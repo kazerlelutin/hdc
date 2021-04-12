@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Loader /> Check snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="container"
+    data-testid="mug"
+  >
+    <div
+      class="mugContainer"
+    >
+      <div
+        class="mug"
+      >
+        <div
+          class="coffee"
+        />
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

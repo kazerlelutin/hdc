@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Oswald:wght@200;400;700&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body{
+  margin: 0;
+	box-sizing: border-box;
+	font-family: 'Oswald', sans-serif;
+	font-size: 16px;
+	line-height: 1.5;
+
+  /*-- colors --*/
+  --color-princ: #413083;
+  --color-second: #e98807;
+  --color-tierce: #999999;
+  --color-quator: #f3f3f3;   
+  --color-link: #3c4992;
+
+  /*-- sand --*/
+  --color-sand: #F2BA52;
+
+  /*-- bg --*/
+  --color-sky: linear-gradient(#66ADD9 25%, white 65%);
+  color: rgb(44, 44, 44);
+
+  transition: 400ms ease-in-out;
+}
+
+body[data-theme="dark"] {
+
+  --color-princ: #5f5977;
+  --color-second: #bb7a24;
+  --color-link: rgb(130, 128, 139);
+  /*-- sand --*/
+  --color-sand: #1d1403;
+  --color-sky: linear-gradient(#090813 20%, rgb(35, 20, 41) 55%);
+
+  color: rgb(112, 112, 112);
+  transition: 400ms ease-in-out;
+}
+
+pre,figcaption {
+	font-family: 'Kalam', cursive;
+}
+
+a {
+  color: var(--color-link);
+}
+
+h1 {
+	color: var(--color-princ);
+}
+
+h2 {
+  color: var(--color-second);
+}

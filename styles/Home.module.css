@@ -1,0 +1,11 @@
+.main {
+  display: flex;
+  gap: 15px;
+  padding: 10px;
+  flex-wrap: wrap;
+  overflow-y:auto;
+}
+
+.function {
+  max-width: 500px;
+}

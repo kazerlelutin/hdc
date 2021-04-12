@@ -1,0 +1,105 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pages snapshots snap <Home /> 1`] = `
+<DocumentFragment>
+  <div
+    class="container"
+  >
+    <div
+      class="sand"
+    >
+      <div
+        class="mountain one"
+      />
+      <div
+        class="mountain two"
+      />
+      <div
+        class="mountain three"
+      />
+      <div
+        class="mountain four"
+      />
+      <div
+        class="mountain five"
+      />
+      <div
+        class="mountain six"
+      />
+      <div
+        class="mountain seven"
+      />
+    </div>
+    <div
+      class="container"
+    >
+      <div
+        class="rupteur"
+        data-testid="rupteur"
+        data-theme="light"
+      >
+        <div
+          class="state"
+        />
+      </div>
+    </div>
+    <h1
+      class="title"
+    >
+      Tu es en avance !
+    </h1>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Pages snapshots snap <MyApp /> 1`] = `
+<DocumentFragment>
+  <div
+    class="container"
+  >
+    <div
+      class="sand"
+    >
+      <div
+        class="mountain one"
+      />
+      <div
+        class="mountain two"
+      />
+      <div
+        class="mountain three"
+      />
+      <div
+        class="mountain four"
+      />
+      <div
+        class="mountain five"
+      />
+      <div
+        class="mountain six"
+      />
+      <div
+        class="mountain seven"
+      />
+    </div>
+    <div
+      class="container"
+    >
+      <div
+        class="rupteur"
+        data-testid="rupteur"
+        data-theme="light"
+      >
+        <div
+          class="state"
+        />
+      </div>
+    </div>
+    <h1
+      class="title"
+    >
+      Tu es en avance !
+    </h1>
+  </div>
+</DocumentFragment>
+`;

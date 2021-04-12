@@ -1,0 +1,87 @@
+.container {
+    display: grid;
+    grid-template-rows: 1fr;
+    box-sizing: border-box;
+    margin: 0 auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    margin: 0;
+    background: var(--color-sky);
+    height: calc(var(--vh, 1vh) * 100);
+    overflow: hidden;
+    transition: 400ms ease-in-out;
+}
+
+.sand {
+    position: fixed;
+    display:grid;
+    grid-template-rows: auto 1fr;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 40%;
+    z-index: 0;
+}
+
+.mountains {
+    position: relative;
+    height: 150px;
+}
+
+.mountain {
+    position: absolute;
+    transform: rotate(45deg);
+    width: 120px;
+    height: 120px;
+    border-radius: 40px 0 0 0;
+    background: var(--color-sand);
+}
+
+.one {
+    bottom: -80px;
+    transform: rotate(45deg) scale(2);
+}
+
+.two {
+    bottom: -100px;
+    left: 8%;
+    transform: rotate(45deg) scale(1.5);
+}
+
+.three {
+    bottom: -90px;
+    left: 35%;
+    transform: rotate(45deg) scale(1.6);
+}
+
+.four {
+    bottom: -90px;
+    left: 50%;
+    transform: rotate(45deg) scale(2.2);
+}
+
+.five {
+    bottom: -120px;
+    left: 70%;
+    transform: rotate(45deg) scale(1.5);
+}
+
+.six {
+    bottom: -90px;
+    left: 80%;
+    transform: rotate(45deg) scale(1.8);
+}
+
+.seven {
+    bottom: -90px;
+    right: 0;
+    transform: rotate(45deg) scale(2);
+}
+
+.ground {
+    background: var(--color-sand);
+}

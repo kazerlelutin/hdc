@@ -1,0 +1,64 @@
+.container {
+    position: fixed;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+}
+
+.rupteur {
+    display: block;
+    position: relative;
+    border-radius: 25px;
+    width: 35px;
+    height: 20px;
+    box-shadow: inset 1px 1px 5px black;
+}
+
+.rupteur[data-theme="dark"] {
+    background: #31163b; 
+}
+
+.rupteur[data-theme="light"] {
+    background: #3a67bb; 
+}
+
+.state, .state:before {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    transition: 300ms ease-in-out;
+}
+
+.state {
+    top: 2px;
+    left: 2px;
+    overflow: hidden;
+}
+
+.rupteur[data-theme="dark"] .state {
+    background: #7a787a; 
+    box-shadow: 0 0 5px rgba(255,255,255,.5);
+}
+
+.rupteur[data-theme="light"] .state {
+    background: radial-gradient(rgb(235, 236, 155) 20%,rgb(206, 209, 4));
+    box-shadow: 0 0 15px rgba(255,255,255,.6);
+    left: calc(100% - 18px)
+}
+
+.rupteur[data-theme="dark"] .state:before{
+    content: '';
+    opacity: 1;
+    left: 5px;
+    top: 0;
+    background: rgba(53, 50, 18, 0.5);
+}
+
+.rupteur[data-theme="light"] .state:before{
+    content: '';
+    opacity: 0;
+    left: -20px;
+    top: 0;
+    background: rgba(53, 50, 18, 0.5);
+}

@@ -1,0 +1,17 @@
+.container {
+    display: grid;
+    grid-template-rows: 1fr;
+    box-sizing: border-box;
+    margin: 0 auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    margin: 0;
+    background: var(--color-sky);
+    height: calc(var(--vh, 1vh) * 100);
+    overflow: hidden;
+    transition: 400ms ease-in-out;
+}

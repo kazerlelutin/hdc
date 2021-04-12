@@ -1,0 +1,17 @@
+.container {
+  height: 100vh;
+  padding: .5rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows:auto 1fr;
+  gap: 15px;
+  align-items: baseline;
+}
+
+.main {
+  display: flex;
+  gap: 15px;
+  padding: 10px;
+  flex-wrap: wrap;
+  overflow-y:auto;
+}
