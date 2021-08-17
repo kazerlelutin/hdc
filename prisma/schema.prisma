@@ -1,0 +1,54 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Food {
+  id       Int    @id @default(autoincrement())
+  createdAt DateTime @default(now()) @db.Timestamp(6)
+  names Foodname[]
+}
+
+model Foodname {
+  id  Int    @id @default(autoincrement())
+  createdAt DateTime @default(now()) @db.Timestamp(6)
+  lang String
+  name String
+  foodId Int
+  food  Food @relation(fields: [foodId], references: [id])
+  @@unique([name])
+}
+
+model FoodGroup {
+    id  Int    @id @default(autoincrement())
+    createdAt DateTime @default(now()) @db.Timestamp(6)
+    //subgroup jointure
+    name FoodGroupname[]
+}
+
+model FoodGroupname {
+  id  Int    @id @default(autoincrement())
+  createdAt DateTime @default(now()) @db.Timestamp(6)
+  lang String
+  name String
+  groupId Int
+  group  FoodGroup @relation(fields: [groupId], references: [id])
+  @@unique([name])
+}
+
+//sous groupe --> relation groupe
+
+//sous sous groupe --> relation sous groupe
+
+//constituant --> relation aliment
+
+// source de donnée
+
+
