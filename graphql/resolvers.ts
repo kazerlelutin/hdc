@@ -1,7 +1,13 @@
-import hello from "../services/hello/hello";
+import foods from "../services/foods/foods";
+import food from "../services/food/food";
+import login from "../services/user/login";
 
 export default {
     Query: {
-        hello
+        foods,
+        food
+    },
+    Mutation: {
+        login
     }
 }

@@ -1,37 +1,67 @@
-@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Oswald:wght@200;400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Oswald:wght@200;400;700&display=swap");
 
 * {
   box-sizing: border-box;
 }
 
-body{
+body {
   margin: 0;
-	box-sizing: border-box;
-	font-family: 'Oswald', sans-serif;
-	font-size: 16px;
-	line-height: 1.5;
+  box-sizing: border-box;
+  font-family: "Oswald", sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
 
   /*-- colors --*/
-  --color-princ: #413083;
-  --color-second: #e98807;
-  --color-tierce: #999999;
-  --color-quator: #f3f3f3;   
+  /*primary*/
+  --color-princ-hue: 252;
+  --color-princ-sat: 46%;
+  --color-princ-light: 35%;
+  /*secondary*/
+  --color-second-hue: 34;
+  --color-second-sat: 94%;
+  --color-second-light: 47%;
+  /*tierce*/
+  --color-tierce-hue: 0;
+  --color-tierce-sat: 0%;
+  --color-tierce-light: 60%;
+  /*quator*/
+  --color-quator-hue: 0;
+  --color-quator-sat: 0%;
+  --color-quator-light: 95%;
+  /*link*/
   --color-link: #3c4992;
-
+  /*-- panel --*/
+  --color-panel-hue: 0;
+  --color-panel-sat: 0%;
+  --color-panel-light: 92%;
+  /*-- border --*/
+  --color-border-hue: 0;
+  --color-border-sat: 0%;
+  --color-border-light: 45%;
   /*-- sand --*/
-  --color-sand: #F2BA52;
-
+  --color-sand-hue: 34;
+  --color-sand-sat: 86%;
+  --color-sand-light: 64%;
   /*-- bg --*/
-  --color-sky: linear-gradient(#66ADD9 25%, white 65%);
+  --color-sky: linear-gradient(#66add9 25%, white 65%);
   color: rgb(44, 44, 44);
 
   transition: 400ms ease-in-out;
 }
 
 body[data-theme="dark"] {
-
-  --color-princ: #5f5977;
-  --color-second: #bb7a24;
+  /*primary*/
+  --color-princ-sat: 14%;
+  --color-princ-light: 41%;
+  /*secondary*/
+  --color-second-sat: 68%;
+  --color-second-light: 44%;
+  /*-- sand --*/
+  --color-sand-sat: 40%;
+  --color-sand-light: 20%;
+  /*-- panel --*/
+  --color-panel-sat: 0%;
+  --color-panel-light: 20%;
   --color-link: rgb(130, 128, 139);
   /*-- sand --*/
   --color-sand: #1d1403;
@@ -41,8 +71,9 @@ body[data-theme="dark"] {
   transition: 400ms ease-in-out;
 }
 
-pre,figcaption {
-	font-family: 'Kalam', cursive;
+pre,
+figcaption {
+  font-family: "Kalam", cursive;
 }
 
 a {
@@ -50,9 +81,137 @@ a {
 }
 
 h1 {
-	color: var(--color-princ);
+  color: hsl(
+    var(--color-princ-hue),
+    var(--color-princ-sat),
+    var(--color-princ-light)
+  );
 }
 
 h2 {
-  color: var(--color-second);
+  color: hsl(
+    var(--color-second-hue),
+    var(--color-second-sat),
+    var(--color-second-light)
+  );
+}
+
+input {
+  outline: none;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  transition: 200ms ease-in-out;
+}
+
+input:focus {
+  box-shadow: 0 0 20px  hsla(
+    var(--color-second-hue),
+    var(--color-second-sat),
+    var(--color-second-light),
+    .5
+  );
+}
+
+label {
+  font-size: .8em;
+  color: hsl(
+    var(--color-second-hue),
+    var(--color-second-sat),
+    var(--color-second-light)
+  );
+  
+}
+
+.close {
+  cursor: pointer;
+  position: relative;
+  width: 26px;
+  height: 26px;
+  transform-origin: center center;
+  transform: rotate(45deg);
+  transition: 200ms ease-in-out;
+}
+
+.close:after,
+.close:before {
+  position: absolute;
+  content: "";
+  background: hsl(
+    var(--color-princ-hue),
+    var(--color-princ-sat),
+    var(--color-princ-light)
+  );
+  height: 4px;
+  border-radius: 10px;
+}
+
+.close:hover {
+  transform: rotate(135deg) scale(1.1);
+}
+
+.close:before {
+  left: 0;
+  right: 0;
+  top: calc(50% - 2px);
+}
+
+.close:after {
+  top: 0;
+  bottom: 0;
+  left: calc(50% - 2px);
+  width: 4px;
+  height: 100%;
+}
+
+
+button {
+  background:  hsl(
+    var(--color-princ-hue),
+    var(--color-princ-sat),
+    var(--color-princ-light)
+  );
+  cursor: pointer;
+  color: white;
+  outline: none;
+  padding:  10px 15px;
+  border: none;
+  border-radius: 40px;
+  transition: 200ms ease-in-out;
+}
+
+button:hover {
+  background:  hsl(
+    var(--color-princ-hue),
+    var(--color-princ-sat),
+    50%
+  );
+}
+
+button:disabled {
+  opacity: .5;
+}
+
+/** transition **/
+
+.alert-enter {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.alert-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.alert-exit {
+  opacity: 1;
+}
+
+.alert-exit-active {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 300ms, transform 300ms;
 }

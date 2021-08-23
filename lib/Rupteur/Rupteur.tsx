@@ -1,37 +1,43 @@
 import classes from "./Rupteur.module.css";
-import { useEffect,useState } from 'react';
-import { PREFIX } from '../../utils/constants';
+import { useEffect, useState } from "react";
+import { PREFIX } from "../../utils/constants";
 
-type theme = "light" | "dark";
+type ThemeType = "light" | "dark";
+enum Theme {
+  light = "light",
+  dark = "dark",
+}
 
 export default function Rupteur() {
-    const 
-        ls= PREFIX + "theme",    
-        [theme, setTheme]= useState <theme> ('light');
+  const ls = PREFIX + "theme",
+    dataTheme = "data-theme",
+    [theme, setTheme] = useState<ThemeType>(Theme.light);
 
-    function handleClick() {
-        const newTheme = theme === "light" ? "dark": "light";
-        setTheme(newTheme);
-        document.querySelector('body').setAttribute('data-theme',newTheme);
-        localStorage.setItem(ls,newTheme)
-    };
+  function handleClick() {
+    const newTheme = theme === Theme.light ? Theme.dark : Theme.light;
+    setTheme(newTheme);
+    document.querySelector("body").setAttribute(dataTheme, newTheme);
+    localStorage.setItem(ls, newTheme);
+  }
 
-    useEffect(()=>{
-        const saveTheme = localStorage.getItem(ls);
-        if(saveTheme && (saveTheme === "light" || saveTheme === "dark")){
-            document.querySelector('body').setAttribute('data-theme', saveTheme);
-            setTheme(saveTheme)
-        }
-    },[]);
+  useEffect(() => {
+    const saveTheme = localStorage.getItem(ls);
+    if (saveTheme && (saveTheme === Theme.light || saveTheme === Theme.dark)) {
+      document.querySelector("body").setAttribute(dataTheme, saveTheme);
+      setTheme(saveTheme);
+    }
+  }, []);
 
-    return <div className={classes.container}>
-        <div 
-            className={classes.rupteur}
-            data-testid="rupteur"
-            data-theme={theme}
-            onClick={handleClick}
-        >
-            <div className={classes.state}/>
-        </div>
+  return (
+    <div className={classes.container}>
+      <div
+        className={classes.rupteur}
+        data-testid="rupteur"
+        data-theme={theme}
+        onClick={handleClick}
+      >
+        <div className={classes.state} />
+      </div>
     </div>
+  );
 }

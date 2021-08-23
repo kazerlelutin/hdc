@@ -5,7 +5,7 @@ interface props {
 }
 
 export default function Head({title, type}: props){
-
+    
     return <NextHead>
         <meta property="og:title" content={`${title ? title + " | " : ""} Hokuto de cuisine`}/>
         <meta property="og:type" content={type ? type : "website"}/>

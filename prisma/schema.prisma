@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
@@ -10,45 +7,374 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model Food {
-  id       Int    @id @default(autoincrement())
+model Ciqual {
+  id                     Int             @id @default(autoincrement())
+  source                 String          @default("hdc")
+  alim_grp_code          String /// Code du groupe d'aliments 
+  alim_ssgrp_code        String /// Code du sous-groupe d'aliments
+  alim_ssssgrp_code      String /// Code du sous-sous-groupe d'aliments
+  alim_grp_nom_fr        String /// Nom du groupe d'aliments
+  alim_ssgrp_nom_fr      String /// Nom du sous-groupe d'aliments 
+  alim_ssssgrp_nom_fr    String /// Nom du sous-sous-groupe d'aliments
+  alim_code              Int /// Code de l'aliment
+  name                   String /// Nom de l'aliment
+  science_name           String /// Nom scientifique de l’aliment (pour lesproduits animaux aquatiques seulement) 
+  kj                     String /// Energie, Règlement UE N° 1169/2011 (kJ/100 g)
+  kcal                   String /// Energie, Règlement UE N° 1169/2011 (kcal/100 g)
+  energy_kj_jones        String /// Energie, N x facteur Jones, avec fibres  (kJ/100 g)
+  energy_kcal_jones      String /// Energie, N x facteur Jones, avec fibres  (kcal/100 g)
+  eau                    String /// g/100gr
+  proteines              String /// Protéines, N x facteur de Jones (g/100 g)
+  proteines_n            String /// Protéines, N x 6.25 (g/100 g)
+  glucides               String /// g/100gr
+  lipides                String /// g/100gr
+  sucres                 String /// g/100gr
+  fructose               String /// g/100gr
+  galactose              String /// g/100gr
+  glucose                String /// g/100gr
+  lactose                String /// g/100gr
+  maltose                String /// g/100gr
+  saccharose             String /// g/100gr
+  amidon                 String /// g/100gr
+  fibres                 String /// g/100gr
+  polyols                String /// g/100gr
+  cendres                String /// g/100gr
+  alcool                 String /// g/100gr
+  acides_organiques      String /// g/100gr
+  ag_satures             String /// g/100gr
+  ag_monoinsatures       String /// g/100gr
+  ag_polyinsatures       String /// g/100gr
+  ag_butyriques          String /// g/100gr
+  ag_caproique           String /// g/100gr
+  ag_caprylique          String /// g/100gr
+  ag_caprique            String /// g/100gr
+  ag_laurique            String /// g/100gr
+  ag_myristique          String /// g/100gr
+  ag_palmitique          String /// g/100gr
+  ag_stearique           String /// g/100gr
+  ag_oleique             String /// g/100gr
+  ag_linoleique          String /// g/100gr
+  ag_alpha_linolenique   String /// g/100gr
+  ag_alpha_arachidonique String /// g/100gr
+  ag_EPA                 String /// g/100gr
+  ag_DHA                 String /// g/100gr
+  cholesterol            String /// mg/100gr
+  sel                    String /// g/100gr
+  calcium                String /// mg/100gr
+  chlorure               String /// mg/100gr
+  cuivre                 String /// mg/100gr
+  fer                    String /// mg/100gr
+  iode                   String /// µg/100gr
+  magnesium              String /// mg/100gr
+  manganese              String /// mg/100gr
+  phosphore              String /// mg/100gr
+  potassium              String /// mg/100gr
+  selenium               String ///  µg/100 gr
+  sodium                 String /// mg/100gr
+  zinc                   String /// mg/100gr
+  retinol                String /// µg/100gr
+  beta_caroten           String /// µg/100gr
+  vitamine_d             String /// µg/100gr
+  vitamine_e             String /// µg/100gr
+  vitamine_k1            String /// µg/100gr
+  vitamine_k2            String /// µg/100gr
+  vitamine_c             String /// mg/100gr
+  vitamine_b1            String /// mg/100gr
+  vitamine_b2            String /// mg/100gr
+  vitamine_b3            String /// mg/100gr
+  vitamine_b5            String /// mg/100gr
+  vitamine_b6            String /// mg/100gr
+  vitamine_b9            String /// mg/100gr
+  vitamine_b12           String /// mg/100gr
+  image                  String?         @db.LongText
+  groceryId              Int?
+  updatedAt              DateTime        @updatedAt
+  createdAt              DateTime        @default(now()) @db.Timestamp(6)
+  grocery                Grocery?        @relation(fields: [groceryId], references: [id])
+  season_month           Season[]
+  diets                  DietsOnCiqual[]
+  steps                  StepOnCiqual[]
+  shopping               Shopping[]
+  stock                  Stock[]
+
+  @@unique([id, alim_code, name, science_name])
+}
+
+model Diet {
+  id          Int             @id @default(autoincrement())
+  name        String          @unique /// name of diet 
+  description String          @db.LongText /// name of diet 
+  updatedAt   DateTime        @updatedAt
+  createdAt   DateTime        @default(now()) @db.Timestamp(6)
+  foods       DietsOnCiqual[]
+  users       DietsOnUsers[]
+
+  @@unique([id, name])
+}
+
+model DietsOnCiqual {
+  ciqualId   Int // relation scalar field (used in the `@relation` attribute above)
+  dietId     Int // relation scalar field (used in the `@relation` attribute above)
+  assignedAt DateTime @default(now())
+
+  food Ciqual @relation(fields: [ciqualId], references: [id])
+  diet Diet   @relation(fields: [dietId], references: [id])
+  @@id([ciqualId, dietId])
+}
+
+model DietsOnUsers {
+  food       User     @relation(fields: [userId], references: [id])
+  userId     Int // relation scalar field (used in the `@relation` attribute above)
+  diet       Diet     @relation(fields: [dietId], references: [id])
+  dietId     Int // relation scalar field (used in the `@relation` attribute above)
+  assignedAt DateTime @default(now())
+
+  @@id([userId, dietId])
+}
+
+model Season {
+  id         Int      @id @default(autoincrement())
+  month      Int /// number of month
+  assignedAt DateTime @default(now())
+  foodId     Int
+  updatedAt  DateTime @updatedAt
+  createdAt  DateTime @default(now()) @db.Timestamp(6)
+  ciqual     Ciqual   @relation(fields: [foodId], references: [id])
+
+  @@unique([id, month])
+}
+
+model Grocery {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String
+  updatedAt   DateTime @updatedAt
+  createdAt   DateTime @default(now()) @db.Timestamp(6)
+  foods       Ciqual[]
+
+  @@unique([id, name])
+}
+
+model Shopping {
+  id        Int      @id @default(autoincrement())
+  foodId    Int
+  userId    Int
+  quantity  Float
+  unity     String
+  updatedAt DateTime @updatedAt
   createdAt DateTime @default(now()) @db.Timestamp(6)
-  names Foodname[]
+
+  user User   @relation(fields: [userId], references: [id])
+  food Ciqual @relation(fields: [foodId], references: [id])
+
+  @@unique([id, foodId, userId])
 }
 
-model Foodname {
-  id  Int    @id @default(autoincrement())
+model Stock {
+  id        Int      @id @default(autoincrement())
+  foodId    Int
+  userId    Int
+  quantity  Float
+  unity     String
+  updatedAt DateTime @updatedAt
   createdAt DateTime @default(now()) @db.Timestamp(6)
-  lang String
-  name String
-  foodId Int
-  food  Food @relation(fields: [foodId], references: [id])
-  @@unique([name])
+
+  user User   @relation(fields: [userId], references: [id])
+  food Ciqual @relation(fields: [foodId], references: [id])
+
+  @@unique([id, foodId, userId])
 }
 
-model FoodGroup {
-    id  Int    @id @default(autoincrement())
-    createdAt DateTime @default(now()) @db.Timestamp(6)
-    //subgroup jointure
-    name FoodGroupname[]
+model User {
+  id         Int      @id @default(autoincrement())
+  email      String   @unique
+  issuer     String
+  name        String?
+  avatar     String?  @db.LongText
+  updatedAt  DateTime @updatedAt
+  createdAt  DateTime @default(now()) @db.Timestamp(6)
+  shoppingId Int?
+
+  shopping Shopping[]
+  stock    Stock[]
+  diets    DietsOnUsers[]
+  recipes  Recipe[]
+  medias   UserOnMedia[]
+  @@unique([email, issuer])
 }
 
-model FoodGroupname {
-  id  Int    @id @default(autoincrement())
+model Recipe {
+  id           Int      @id @default(autoincrement())
+  name         String
+  numberOfPart Int
+  unityOfPart  String
+  description  String   @db.LongText
+  picture      String   @db.LongText
+  creatorId    Int /// for relation
+  originalId   Int? /// for fork relation 
+  state        String /// enum pour brouillon, en cours de réalisation, à faire... 
+  access       String ///  enum, private,public, link
+  updatedAt    DateTime @updatedAt
+  createdAt    DateTime @default(now()) @db.Timestamp(6)
+
+  steps             Step[]
+  stepsOfIngrdients RecipeOnStep[]
+  categories        categoryOnRecipe[]
+  tags              recipeOnTag[]
+
+  creator User    @relation(fields: [creatorId], references: [id])
+  forks   Recipe? @relation("fork")
+  Forks   Recipe? @relation("fork", fields: [originalId], references: [id])
+  @@unique([id, name, creatorId, originalId])
+}
+
+model Category {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String   @db.LongText
+  picture     String?  @db.LongText
+  updatedAt   DateTime @updatedAt
+  createdAt   DateTime @default(now()) @db.Timestamp(6)
+
+  recipes categoryOnRecipe[]
+
+  @@unique([id, name])
+}
+
+model Tag {
+  id        Int      @id @default(autoincrement())
+  name      String
+  updatedAt DateTime @updatedAt
   createdAt DateTime @default(now()) @db.Timestamp(6)
-  lang String
-  name String
-  groupId Int
-  group  FoodGroup @relation(fields: [groupId], references: [id])
-  @@unique([name])
+
+  recipes recipeOnTag[]
+  @@unique([id, name])
 }
 
-//sous groupe --> relation groupe
+model Media {
+  id        Int      @id @default(autoincrement())
+  name      String
+  type      String
+  url       String   @db.LongText
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now()) @db.Timestamp(6)
 
-//sous sous groupe --> relation sous groupe
+  users UserOnMedia[]
+  @@unique([id, name])
+}
 
-//constituant --> relation aliment
+model UserOnMedia {
+  mediaId    Int // relation scalar field (used in the `@relation` attribute above)
+  userId     Int // relation scalar field (used in the `@relation` attribute above)
+  assignedAt DateTime @default(now())
 
-// source de donnée
+  media Media @relation(fields: [mediaId], references: [id])
+  user  User  @relation(fields: [userId], references: [id])
+  @@id([mediaId, userId])
+}
 
+model categoryOnRecipe {
+  categoryId Int // relation scalar field (used in the `@relation` attribute above)
+  recipeId   Int // relation scalar field (used in the `@relation` attribute above)
+  assignedAt DateTime @default(now())
 
+  category Category @relation(fields: [categoryId], references: [id])
+  recipe   Recipe   @relation(fields: [recipeId], references: [id])
+  @@id([categoryId, recipeId])
+}
+
+model recipeOnTag {
+  tagId      Int // relation scalar field (used in the `@relation` attribute above)
+  recipeId   Int // relation scalar field (used in the `@relation` attribute above)
+  assignedAt DateTime @default(now())
+
+  tag    Tag    @relation(fields: [tagId], references: [id])
+  recipe Recipe @relation(fields: [recipeId], references: [id])
+  @@id([tagId, recipeId])
+}
+
+model RecipeOnStep {
+  recipelId  Int // relation scalar field (used in the `@relation` attribute above)
+  stepId     Int // relation scalar field (used in the `@relation` attribute above)
+  assignedAt DateTime @default(now())
+
+  recipe Recipe @relation(fields: [recipelId], references: [id])
+  step   Step   @relation(fields: [stepId], references: [id])
+  @@id([stepId, recipelId])
+}
+
+model StepOnCiqual {
+  ciqualId   Int // relation scalar field (used in the `@relation` attribute above)
+  stepId     Int // relation scalar field (used in the `@relation` attribute above)
+  assignedAt DateTime @default(now())
+
+  food Ciqual @relation(fields: [ciqualId], references: [id])
+  step Step   @relation(fields: [stepId], references: [id])
+  @@id([stepId, ciqualId])
+}
+
+/// media avec owner... ??
+model Step {
+  id          Int      @id @default(autoincrement())
+  duration    DateTime
+  description String   @db.LongText
+  media       String /// or un tableau, une relationo... 
+  number      Int /// num for order
+  actionId    Int /// for relation
+  updatedAt   DateTime @updatedAt
+  createdAt   DateTime @default(now()) @db.Timestamp(6)
+
+  // pour le listes des ingredients, foods ou préparation (recipes)
+  foods     StepOnCiqual[]
+  recipes   RecipeOnStep[] /// pour une pate ...
+  ustensils ustensilOnStep[] // ici, les ustensiles requit
+
+  recipeId Int
+  recipe   Recipe @relation(fields: [recipeId], references: [id])
+  action   Action @relation(fields: [actionId], references: [id])
+}
+
+model Action {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String   @db.LongText
+  gif         String   @db.LongText
+  updatedAt   DateTime @updatedAt
+  createdAt   DateTime @default(now()) @db.Timestamp(6)
+
+  ustensils ustensilOnAction[]
+  step      Step[]
+
+}
+
+model Ustensil {
+  id          Int                @id @default(autoincrement())
+  name        String
+  description String             @db.LongText
+  gif         String             @db.LongText
+  type        String             @default("manuel") // or électrique
+  actions     ustensilOnAction[]
+  steps       ustensilOnStep[]
+  updatedAt   DateTime           @updatedAt
+  createdAt   DateTime           @default(now()) @db.Timestamp(6)
+}
+
+model ustensilOnAction {
+  ustensilId Int // relation scalar field (used in the `@relation` attribute above)
+  actionId   Int // relation scalar field (used in the `@relation` attribute above)
+  assignedAt DateTime @default(now())
+  action     Action   @relation(fields: [actionId], references: [id])
+  ustensil   Ustensil @relation(fields: [ustensilId], references: [id])
+
+  @@id([actionId, ustensilId])
+}
+
+model ustensilOnStep {
+  ustensilId Int // relation scalar field (used in the `@relation` attribute above)
+  stepId     Int // relation scalar field (used in the `@relation` attribute above)
+  assignedAt DateTime @default(now())
+  step       Step     @relation(fields: [stepId], references: [id])
+  ustensil   Ustensil @relation(fields: [ustensilId], references: [id])
+
+  @@id([stepId, ustensilId])
+}
