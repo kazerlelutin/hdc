@@ -1,29 +1,27 @@
 import classes from "./LoginModale.module.css";
 import { useState, useEffect } from "react";
 import { Magic } from "magic-sdk";
-import { client } from "../../graphql/client";
 import { toast } from "react-toastify";
-import { gql, useMutation } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import LoaderPoints from "../LoaderPoints/LoaderPoints";
+import loginQuery from "../../graphql/queries/login.query";
+import Ls from "../../utils/ls";
 
 export default function LoginModale({ setShow, setUser }) {
   const [input, setInput] = useState(""),
-  [loading, setLoading] = useState(false),
-   [addUser, { data }] = useMutation(gql`
-    mutation EmailMutation($didToken: String!) {
-      login(didToken: $didToken) {
-        email
-        id
-      }
-    }
-  `);
+    [loading, setLoading] = useState(false),
+    [addUser, { data }] = useMutation(loginQuery);
 
   async function handleSubmit(e) {
     e.preventDefault();
     setLoading(true);
-    const m = new Magic(process.env.NEXT_PUBLIC_MAGIC_PUB_KEY);
+    const m = new Magic(process.env.NEXT_PUBLIC_MAGIC_PUB_KEY, {
+      locale: "fr",
+    });
     await m.auth.loginWithMagicLink({ email: input });
     const didToken = await m.user.getIdToken();
+    const ls = new Ls();
+    ls.setUserToken(await m.user.generateIdToken({ lifespan: 259200 }));
     try {
       await addUser({
         variables: { didToken },
@@ -32,7 +30,6 @@ export default function LoginModale({ setShow, setUser }) {
       toast.error("Impossible de se connecter");
       setLoading(false);
     }
- 
   }
 
   useEffect(() => {
@@ -40,8 +37,7 @@ export default function LoginModale({ setShow, setUser }) {
       setLoading(false);
       setUser({ ...data.login, isConnected: true });
       setShow(false);
-      toast.success('connecté.e !');
-     
+      toast.success("connecté.e !");
     }
   }, [data]);
 
@@ -72,7 +68,14 @@ export default function LoginModale({ setShow, setUser }) {
           />
 
           <button disabled={loading}>
-            {loading ? <span>Veuillez patientez<LoaderPoints/></span> : "Envoyer"}
+            {loading ? (
+              <span>
+                Veuillez patientez
+                <LoaderPoints />
+              </span>
+            ) : (
+              "Envoyer"
+            )}
           </button>
         </form>
       </div>

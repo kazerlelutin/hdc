@@ -46,6 +46,8 @@ body {
   --color-sky: linear-gradient(#66add9 25%, white 65%);
   color: rgb(44, 44, 44);
 
+  --color-patreon: #FF424D;
+
   transition: 400ms ease-in-out;
 }
 

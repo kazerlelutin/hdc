@@ -1,49 +1,49 @@
 .container {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    padding: 20px;
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
-    z-index: 100;
-    text-align: center;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 20px;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  text-align: center;
 }
 
 .containerClose {
-    display: flex;
-    justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .modale {
-    background: hsl(
+  background: hsl(
     var(--color-panel-hue),
     var(--color-panel-sat),
     var(--color-panel-light)
   );
-    padding: 20px 35px;
-    border-radius: 40px;
-    max-width: 400px;
-    box-shadow: 15px 15px 0 rgba(0,0,0,.2);
-    display: flex;
-    flex-direction: column;
-    gap:10px
+  padding: 20px 35px;
+  border-radius: 40px;
+  max-width: 400px;
+  box-shadow: 15px 15px 0 rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .title {
-    margin: 5px;
+  margin: 5px;
 }
 
 .description p {
-    margin: 5px;
-    font-size: .9em;
+  margin: 5px;
+  font-size: 0.9em;
 }
 
 .form {
-    display: flex;
-    flex-direction: column;
-    gap:10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }

@@ -1,0 +1,73 @@
+.container {
+  position: fixed;
+  right: 10px;
+  background: hsl(
+    var(--color-panel-hue),
+    var(--color-panel-sat),
+    var(--color-panel-light)
+  );
+  padding: 20px 35px;
+  border-radius: 40px;
+  max-width: 400px;
+  box-shadow: 15px 15px 0 rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid hsl(var(--color-border-hue), var(--color-border-sat), 70%);
+}
+
+.avatar {
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    box-sizing: border-box;
+    border: 2px solid  hsl(
+      var(--color-princ-hue),
+      var(--color-princ-sat),
+      var(--color-princ-light)
+    )
+
+    
+  }
+
+  .containerAvatar {
+    display: flex;
+    flex-direction:column;
+    width: 100%;
+    justify-content: center;
+    align-items:center;
+    padding-bottom: 5px;
+    border-bottom:2px solid hsla(
+      var(--color-second-hue),
+      var(--color-second-sat),
+      var(--color-second-light)
+    );
+  }
+
+  .name {
+    color: hsl(
+        var(--color-second-hue),
+        var(--color-second-sat),
+        var(--color-second-light)
+      );
+  }
+
+  .email {
+      font-size:.8em;
+      opacity: .8
+  }
+
+@media screen and (max-width: 600px) {
+  .container {
+    right: 20px;
+    left: 20px;
+    max-width: inherit;
+  }
+}

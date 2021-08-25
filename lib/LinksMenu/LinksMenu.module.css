@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  gap: 15px;
+}
+
+.link {
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+  transition: 200ms ease-in-out;
+  border-bottom: 2px solid
+    hsla(
+      var(--color-princ-hue),
+      var(--color-princ-sat),
+      var(--color-princ-light),
+      0
+    );
+}
+
+.link[data-current="true"] {
+  border-bottom: 2px solid hsla(255, 100%, 100%, 1);
+}
+
+.link:first-letter {
+  text-transform: uppercase;
+}
+
+.link:hover {
+  border-bottom: 2px solid
+    hsla(
+      var(--color-second-hue),
+      var(--color-second-sat),
+      var(--color-second-light),
+      1
+    );
+}

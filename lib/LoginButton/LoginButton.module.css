@@ -1,40 +1,55 @@
 .container {
-    background:  hsl(
-        var(--color-princ-hue),
-        var(--color-princ-sat),
-        var(--color-princ-light)
-      );
-      cursor: pointer;
-      border-radius: 50px;
-      padding: 5px 20px;
-      min-width: 100px;
-      text-align: center;
-      transition: 200ms ease-in-out;
+  background: hsl(
+    var(--color-princ-hue),
+    var(--color-princ-sat),
+    var(--color-princ-light)
+  );
+  cursor: pointer;
+  border-radius: 50px;
+  padding: 5px 20px;
+  min-width: 100px;
+  text-align: center;
+  transition: 200ms ease-in-out;
 }
 
 .container:hover {
-    background:  hsl(
-        var(--color-princ-hue),
-        var(--color-princ-sat),
-        50%
-      );
+  background: hsl(var(--color-princ-hue), var(--color-princ-sat), 50%);
 }
 .connect {
-    color: hsl(
-        var(--color-quator-hue),
-        var(--color-quator-sat),
-        var(--color-quator-light)
-      );
+  color: hsl(
+    var(--color-quator-hue),
+    var(--color-quator-sat),
+    var(--color-quator-light)
+  );
 }
 
 .sub {
-    color: hsla(
-        var(--color-quator-hue),
-        var(--color-quator-sat),
-        var(--color-quator-light),
-        .5
-      );
+  color: hsla(
+    var(--color-quator-hue),
+    var(--color-quator-sat),
+    var(--color-quator-light),
+    0.5
+  );
 
-      font-size: .6em;
-      font-family: sans-serif;
+  font-size: 0.6em;
+  font-family: sans-serif;
+}
+
+.avatar {
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  box-sizing: border-box;
+  border: 2px solid
+    hsl(
+      var(--color-princ-hue),
+      var(--color-princ-sat),
+      var(--color-princ-light)
+    );
 }

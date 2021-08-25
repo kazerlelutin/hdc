@@ -1,7 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 
 export default async function foods(_source: any, {search}: {search: string}) {
-
   const prisma = new PrismaClient();
   const foods = await prisma.ciqual.findMany({
     take: 1,
@@ -20,6 +19,5 @@ export default async function foods(_source: any, {search}: {search: string}) {
       }
     },
   });
-  console.log(foods[0].diets)
   return foods;
 }

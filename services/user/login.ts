@@ -9,7 +9,6 @@ export default async function login(
   const mAdmin = new Magic(process.env.MAGIC_SECRET_KEY);
 
   try {
-
     mAdmin.token.decode(didToken);
     const { email, issuer } = await mAdmin.users.getMetadataByToken(didToken),
       prisma = new PrismaClient(),
@@ -29,7 +28,6 @@ export default async function login(
       avatar,
     };
   } catch (e) {
-    console.log("//////erreur login----------->", e);
     throw new AuthenticationError(e);
   }
 }

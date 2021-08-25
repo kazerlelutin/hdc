@@ -58,5 +58,6 @@ export default gql`
 
   type Mutation {
     login(didToken:String!): User
+    loginByToken(token:String!):User
   }
 `;

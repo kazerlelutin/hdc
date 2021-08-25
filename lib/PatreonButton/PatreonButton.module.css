@@ -1,0 +1,17 @@
+.container {
+  background: var(--color-patreon);
+  padding: 10px 15px;
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  color: white;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 0.8em;
+  transition: 200ms ease-in-out;
+  text-decoration: none;
+}
+
+.container:hover {
+  background: #fb5d66;
+}

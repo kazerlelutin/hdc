@@ -1,5 +1,4 @@
 import { PrismaClient } from "@prisma/client";
-import getGraphqlFields from "../../utils/getGraphqlfields";
 import { GraphQlInfo } from '../../utils/interfaces';
 
 export default async function food(_source: any, { id }: { id: number },_context:any,info:GraphQlInfo) {

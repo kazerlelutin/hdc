@@ -9,6 +9,8 @@ import Ls from "../utils/ls";
 import { ToastContainer } from "react-toastify";
 import { ApolloProvider } from "@apollo/client";
 import { client } from "../graphql/client";
+import { Magic } from "magic-sdk";
+import LoginBytokenMutation from "../graphql/mutations/LoginByToken.mutation";
 
 export default function MyApp({ Component, pageProps }) {
   const userInitialState = {
@@ -23,14 +25,27 @@ export default function MyApp({ Component, pageProps }) {
 
   async function checkIsLoading() {
     const ls = new Ls(),
-      token = ls.getUserToken(),
-      newUser = { ...userInitialState };
+      token = ls.getUserToken();
     if (token) {
-      console.log("vérif du token et update en DB, en LS et en context");
+      try {
+        const { data } = await client.mutate({
+            mutation: LoginBytokenMutation,
+            variables: { token },
+          }),
+          m = new Magic(process.env.NEXT_PUBLIC_MAGIC_PUB_KEY, {
+            locale: "fr",
+          });
+        setUser({ ...data.user, isConnected: true, loading: false });
+        m.user.isLoggedIn().then(async (isLoggedIn: boolean) => {
+          if (isLoggedIn) {
+            ls.setUserToken(await m.user.generateIdToken({ lifespan: 259200 }));
+          }
+        });
+      } catch (e) {
+        ls.setUserToken("");
+        setUser({ ...userInitialState, loading: false });
+      }
     }
-
-    newUser.loading = false;
-    setUser(newUser);
   }
   return (
     <ApolloProvider client={client}>

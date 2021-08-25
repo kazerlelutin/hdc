@@ -2,6 +2,7 @@ import classes from "./MenuHeader.module.css";
 import { useState } from "react";
 import Rupteur from "../Rupteur/Rupteur";
 import LoginButton from "../LoginButton/LoginButton";
+import PatreonButton from "../PatreonButton/PatreonButton";
 
 export default function MenuHeaderMobile() {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,7 +14,7 @@ export default function MenuHeaderMobile() {
 
         <div className={classes.menuMobile} data-isopen={isOpen}>
           <div className="close" onClick={() => setIsOpen(false)}/>
-          <div className="d" onClick={() => setIsOpen(false)}>
+          <div className={classes.containerLogin} >
           <LoginButton />
           </div>
           <nav>
@@ -27,6 +28,7 @@ export default function MenuHeaderMobile() {
               </ul>
           </nav>
           <div className={classes.footerMenu}>
+            <PatreonButton/>
         <Rupteur/>
             </div>
         </div>
