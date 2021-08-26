@@ -59,5 +59,6 @@ export default gql`
   type Mutation {
     login(didToken:String!): User
     loginByToken(token:String!):User
+    updateAvatar(didToken:String!,thumb: String!,original:String!): User
   }
 `;

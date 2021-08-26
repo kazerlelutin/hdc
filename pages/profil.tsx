@@ -1,15 +1,14 @@
+import AvatarEdit from "../lib/AvatarEdit/AvatarEdit"
 import classes from "../styles/profil.module.css"
 export default function Profil(){
 
     return <div className={classes.container}>
      <div className={classes.page}>
-     <h1>Mon profil</h1>
+     
+     <AvatarEdit/>
 
      <p>
-         vcsdvsdvb
-         *vsdv
-         vsdvbsdv
-         bsdv vf vzvgzevzevgezvez
+    à Protéger si pas de user. 
      </p>
      </div>
     </div>

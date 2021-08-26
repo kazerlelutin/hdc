@@ -27,7 +27,7 @@ export default function UserModale({ setShow, user, parentRef }) {
       <div className={classes.containerAvatar}>
         <div className={classes.avatar}>
           <Image
-            src={user.avatar || "/tok.webp"}
+            src={user.avatar.replace("size",'thumb') || "/tok.webp"}
             alt="avatar"
             width="40"
             height="40"
