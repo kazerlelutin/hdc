@@ -1,4 +1,4 @@
-import classes from "./background.module.css";
+import classes from "./Background.module.css";
 const mountains = ['one','two','three','four','five','six','seven'];
 
 export default function Background() {
