@@ -190,7 +190,7 @@ model User {
   id         Int      @id @default(autoincrement())
   email      String   @unique
   issuer     String @unique
-  name        String?
+  name       String? @unique
   avatar     String?  @db.LongText
   updatedAt  DateTime @updatedAt
   createdAt  DateTime @default(now()) @db.Timestamp(6)
@@ -201,7 +201,7 @@ model User {
   diets    DietsOnUsers[]
   recipes  Recipe[]
   medias   UserOnMedia[]
-  @@unique([email, issuer])
+  @@unique([email, issuer, name])
 }
 
 model Recipe {

@@ -35,7 +35,13 @@ export default function MyApp({ Component, pageProps }) {
           m = new Magic(process.env.NEXT_PUBLIC_MAGIC_PUB_KEY, {
             locale: "fr",
           });
-        setUser({ ...data.user, isConnected: true, loading: false });
+        const newUser = {...data.user};
+        newUser.isConnected = true
+        newUser.loading = false
+        if(!newUser.name ){
+          newUser.name = newUser.email.split('@')[0]
+        }
+        setUser({ ...newUser});
         m.user.isLoggedIn().then(async (isLoggedIn: boolean) => {
           if (isLoggedIn) {
             ls.setUserToken(await m.user.generateIdToken({ lifespan: 259200 }));

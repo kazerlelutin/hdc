@@ -124,7 +124,6 @@ export default function AvatarEdit() {
 
   useEffect(() => {
     if (user.avatar) {
-      console.log("ddo");
       dispatch({
         type: ActionKind.SET_LINK,
         payload: user.avatar.replace("size", "original"),

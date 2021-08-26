@@ -1,67 +1,68 @@
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .label {
-    border-radius: 50%;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 150px;
-    height: 150px;
-    cursor: pointer;
-    box-sizing: border-box;
-    border: 5px solid
-      hsl(
-        var(--color-princ-hue),
-        var(--color-princ-sat),
-        var(--color-princ-light)
-      );
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 150px;
+  cursor: pointer;
+  box-sizing: border-box;
+  border: 5px solid
+    hsl(
+      var(--color-princ-hue),
+      var(--color-princ-sat),
+      var(--color-princ-light)
+    );
 }
 
 .camera {
-    position: absolute;
+  position: absolute;
+
+  cursor: pointer;
 }
 
 .input {
-    display: none;
+  display: none;
 }
 
 .containerCropper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    padding: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  padding: 25px;
 }
 
 .cropper {
-    max-width: 300px;
-    background: hsl(
-        var(--color-panel-hue),
-        var(--color-panel-sat),
-        var(--color-panel-light)
-      );
-      padding: 20px 35px;
-      border-radius: 40px;
-      max-width: 400px;
-      box-shadow: 15px 15px 0 rgba(0, 0, 0, 0.2);
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-
+  max-width: 300px;
+  background: hsl(
+    var(--color-panel-hue),
+    var(--color-panel-sat),
+    var(--color-panel-light)
+  );
+  padding: 20px 35px;
+  border-radius: 40px;
+  max-width: 400px;
+  box-shadow: 15px 15px 0 rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .containerButton {
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
-    gap: 15px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
 }

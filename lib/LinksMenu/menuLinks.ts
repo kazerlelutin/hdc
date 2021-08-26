@@ -1,6 +1,6 @@
 export const menuLinks = [
   {
-    name: "acccueil",
+    name: "accueil",
     href: "/",
   },
   {
