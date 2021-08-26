@@ -10,8 +10,7 @@ export default function MenuHeaderDesktop() {
       <LinksMenuDesktop/>
            <Rupteur/>
       <PatreonButton/>
-      <LoginButton />
-   
+      <LoginButton/>
     </div>
   );
 }

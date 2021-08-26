@@ -7,7 +7,7 @@ import { User } from "../../utils/interfaces";
 import Image from "next/image";
 import UserModale from "../UserModale/UserModale";
 
-export default function LoginButton() {
+export default function LoginButton({closeMenu}:{closeMenu?: Function}) {
   const [user, setUser] = useContext(UserContext),
     [show, setShow] = useState<boolean>(false),
     ref = useRef(null);
@@ -36,7 +36,9 @@ export default function LoginButton() {
         unmountOnExit
         mountOnEnter
       >
-        <UserModale setShow={setShow} user={user} parentRef={ref} />
+        <UserModale setShow={()=>{
+          setShow(false)
+          closeMenu(false)}} user={user} parentRef={ref} />
       </CSSTransition>
     </>
   ) : (

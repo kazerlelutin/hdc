@@ -3,6 +3,7 @@ import { useState } from "react";
 import Rupteur from "../Rupteur/Rupteur";
 import LoginButton from "../LoginButton/LoginButton";
 import PatreonButton from "../PatreonButton/PatreonButton";
+import LinksMenuMobile from "../LinksMenu/LinksMenuMobile";
 
 export default function MenuHeaderMobile() {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,17 +16,10 @@ export default function MenuHeaderMobile() {
         <div className={classes.menuMobile} data-isopen={isOpen}>
           <div className="close" onClick={() => setIsOpen(false)}/>
           <div className={classes.containerLogin} >
-          <LoginButton />
+          <LoginButton closeMenu={()=>setIsOpen(false)}/>
           </div>
-          <nav>
-       
-              <ul>
-                  <li>
-                      Faire planning repas
-                      many-to-many repas
-                  </li>
-                  <li>contient le footer</li>
-              </ul>
+          <nav className={classes.navMobile}>
+       <LinksMenuMobile/>
           </nav>
           <div className={classes.footerMenu}>
             <PatreonButton/>

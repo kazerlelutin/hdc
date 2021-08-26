@@ -17,7 +17,7 @@ export default function UserModale({ setShow, user, parentRef }) {
   useEffect(
     () =>
       clickOutside([ref], () => {
-        setShow(false);
+        setShow();
       }),
     []
   );
@@ -27,7 +27,7 @@ export default function UserModale({ setShow, user, parentRef }) {
       <div className={classes.containerAvatar}>
         <div className={classes.avatar}>
           <Image
-            src={user.avatar.replace("size",'thumb') || "/tok.webp"}
+            src={user.avatar.replace("size", "thumb") || "/tok.webp"}
             alt="avatar"
             width="40"
             height="40"
@@ -40,8 +40,10 @@ export default function UserModale({ setShow, user, parentRef }) {
         <div className={classes.email}>{user.email}</div>
       </div>
       <Disconnect setShow={setShow} />
-      <Link href="/profil" >
-        <button className={classes.link} onClick={()=>setShow(false)}>Gérer mon profil</button>
+      <Link href="/profil">
+        <button className={classes.link} onClick={() => setShow(false)}>
+          Gérer mon profil
+        </button>
       </Link>
     </div>
   );

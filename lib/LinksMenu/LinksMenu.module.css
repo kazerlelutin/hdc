@@ -34,3 +34,20 @@
       1
     );
 }
+
+.linkMobile[data-current="true"] {
+  color: hsla(
+    var(--color-second-hue),
+    var(--color-second-sat),
+    var(--color-second-light),
+    .6
+  );
+}
+
+.containerMobile {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: right;
+  font-size: 1.5em;
+}
