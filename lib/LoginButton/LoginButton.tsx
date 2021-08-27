@@ -38,7 +38,8 @@ export default function LoginButton({closeMenu}:{closeMenu?: Function}) {
       >
         <UserModale setShow={()=>{
           setShow(false)
-          closeMenu(false)}} user={user} parentRef={ref} />
+          closeMenu && closeMenu(false)}
+          } user={user} parentRef={ref} />
       </CSSTransition>
     </>
   ) : (

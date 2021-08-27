@@ -11,9 +11,12 @@ import { ApolloProvider } from "@apollo/client";
 import { client } from "../graphql/client";
 import { Magic } from "magic-sdk";
 import LoginBytokenMutation from "../graphql/mutations/LoginByToken.mutation";
+import { useRouter } from 'next/router';
 
 export default function MyApp({ Component, pageProps }) {
-  const userInitialState = {
+  const 
+  router = useRouter(),
+  userInitialState = {
       isConnected: false,
       loading: true,
     },
@@ -50,6 +53,15 @@ export default function MyApp({ Component, pageProps }) {
       } catch (e) {
         ls.setUserToken("");
         setUser({ ...userInitialState, loading: false });
+
+        console.log('ee')
+        if(router.pathname.match(/profil/)){
+          router.push('/')
+        }
+      }
+    }else {
+      if(router.pathname.match(/profil/)){
+        router.push('/')
       }
     }
   }
