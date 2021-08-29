@@ -1,5 +1,6 @@
 import Background from "../Background/Background";
 import Header from "../Header/Header";
+import IconsBar from "../IconsBar/IconsBar";
 import classes from "./Layout.module.css";
 
 export default function Layout({ children }) {
@@ -8,8 +9,11 @@ export default function Layout({ children }) {
       <Background />
       <div className={classes.page}>
         <Header />
-        <main>{children}</main>
-        <div className="div">footer</div>
+        <main className={classes.main}>
+          <IconsBar/>
+          {children}
+          </main>
+        <div className={classes.footer}>footer</div>
       </div>
     </div>
   );

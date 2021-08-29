@@ -10,7 +10,6 @@ export default async function foods(_source: any, {search}: {search: string}) {
       },
     },
     include: {
-
       season_month: true,
       diets: {
           include:{

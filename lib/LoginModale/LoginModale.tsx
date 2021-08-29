@@ -7,7 +7,7 @@ import LoaderPoints from "../LoaderPoints/LoaderPoints";
 import loginQuery from "../../graphql/queries/login.query";
 import Ls from "../../utils/ls";
 
-export default function LoginModale({ setShow, setUser }) {
+export default function LoginModale({ setShow, setUser }:{setShow?:Function,setUser:Function }) {
   const [input, setInput] = useState(""),
     [loading, setLoading] = useState(false),
     [addUser, { data }] = useMutation(loginQuery);
@@ -36,7 +36,7 @@ export default function LoginModale({ setShow, setUser }) {
     if (data) {
       setLoading(false);
       setUser({ ...data.login, isConnected: true });
-      setShow(false);
+      setShow && setShow(false);
       toast.success("connecté.e !");
     }
   }, [data]);
@@ -45,7 +45,7 @@ export default function LoginModale({ setShow, setUser }) {
     <div className={classes.container}>
       <div className={classes.modale}>
         <div className={classes.containerClose}>
-          <div className="close" onClick={() => setShow(false)} />
+         {setShow && <div className="close" onClick={() => setShow(false)} />} 
         </div>
         <h2 className={classes.title}>Se connecter</h2>
         <div className={classes.description}>

@@ -12,6 +12,7 @@ import { client } from "../graphql/client";
 import { Magic } from "magic-sdk";
 import LoginBytokenMutation from "../graphql/mutations/LoginByToken.mutation";
 import { useRouter } from 'next/router';
+import { protectedRoutes } from '../utils/protectedRoutes';
 
 export default function MyApp({ Component, pageProps }) {
   const 
@@ -53,15 +54,13 @@ export default function MyApp({ Component, pageProps }) {
       } catch (e) {
         ls.setUserToken("");
         setUser({ ...userInitialState, loading: false });
-
-        console.log('ee')
-        if(router.pathname.match(/profil/)){
-          router.push('/')
+        if(router.pathname.match(protectedRoutes)){
+          router.push('/login')
         }
       }
     }else {
-      if(router.pathname.match(/profil/)){
-        router.push('/')
+      if(router.pathname.match(protectedRoutes)){
+        router.push('/login')
       }
     }
   }

@@ -21,7 +21,7 @@ export default function LoginButton({closeMenu}:{closeMenu?: Function}) {
         data-ignore="true"
       >
         <Image
-          src={user.avatar.replace("size",'thumb') || "/tok.webp"}
+          src={user.avatar ? user.avatar.replace("size",'thumb') : "/tok.webp"}
           alt="avatar"
           width="40"
           height="40"

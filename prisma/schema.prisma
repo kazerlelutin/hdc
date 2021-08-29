@@ -195,6 +195,7 @@ model User {
   updatedAt  DateTime @updatedAt
   createdAt  DateTime @default(now()) @db.Timestamp(6)
   shoppingId Int?
+  role      String    @default("user")
 
   shopping Shopping[]
   stock    Stock[]
